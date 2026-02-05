@@ -1,0 +1,2 @@
+# Azure Web App deployment requirements (points to backend folder)
+-r backend/requirements.txt
