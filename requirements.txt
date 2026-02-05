@@ -1,2 +1,3 @@
 # Azure Web App deployment requirements (points to backend folder)
 -r backend/requirements.txt
+gunicorn==21.2.0
