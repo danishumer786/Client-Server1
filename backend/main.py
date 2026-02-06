@@ -28,6 +28,54 @@ def read_root():
     return {"message": "FastAPI Backend is running by Danish!"}
 
 
+@app.get("/info")
+def get_info():
+    return {
+        "app_name": "Client-Server Backend",
+        "version": "1.0.0",
+        "developer": "Danish",
+        "framework": "FastAPI",
+        "status": "Active"
+    }
+
+
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "timestamp": "2026-02-05", "uptime": "running"}
+
+
+@app.get("/quote")
+def random_quote():
+    quotes = [
+        {"quote": "Code never lies, comments sometimes do.", "author": "Ron Jeffries"},
+        {"quote": "First, solve the problem. Then, write the code.", "author": "John Johnson"},
+        {"quote": "Experience is the name everyone gives to their mistakes.", "author": "Oscar Wilde"},
+        {"quote": "In order to be irreplaceable, one must always be different.", "author": "Coco Chanel"},
+        {"quote": "Java is to JavaScript what car is to Carpet.", "author": "Chris Heilmann"}
+    ]
+    return random.choice(quotes)
+
+
+@app.get("/numbers/{num}")
+def get_number_info(num: int):
+    return {
+        "number": num,
+        "square": num * num,
+        "cube": num * num * num,
+        "is_even": num % 2 == 0,
+        "is_positive": num > 0
+    }
+
+
+@app.get("/greet/{name}")
+def greet_user(name: str):
+    return {
+        "greeting": f"Hello {name}!",
+        "message": f"Welcome to Danish's FastAPI Backend, {name}!",
+        "length": len(name)
+    }
+
+
 @app.post("/open-image")
 def open_image():
     """
