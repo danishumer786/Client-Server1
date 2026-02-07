@@ -10,7 +10,8 @@ __pycache__/
 *$py.class
 *.so
 .Python
-build/
+*/build/
+!frontend/build/
 develop-eggs/
 dist/
 downloads/
