@@ -11,7 +11,7 @@ app = FastAPI()
 
 # Get frontend URLs - support both development and production
 localhost_url = "http://localhost:3000"
-production_url = "https://salmon-island-0c4d7891e.1.azurestaticapps.net"
+production_url = os.getenv("FRONTEND_URL", "https://salmon-island-0c4d7891e.1.azurestaticapps.net")
 
 # Allow both development and production frontend URLs
 allowed_origins = [localhost_url, production_url]

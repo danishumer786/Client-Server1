@@ -10,8 +10,13 @@ function App() {
     setMessage('🔄 Connecting to backend...');
 
     try {
-      // Get backend URL from environment variable
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      // Smart environment detection
+      const isLocalhost = window.location.hostname === 'localhost';
+      const API_URL = isLocalhost
+        ? 'http://localhost:8000'
+        : 'https://client-server-backend-gbatq5e8g8g3a9hk.westus2-01.azurewebsites.net';
+
+      console.log('🌐 Environment:', isLocalhost ? 'Development' : 'Production');
       console.log('🌐 Calling backend at:', API_URL);
 
       // Make a POST request to the FastAPI backend
