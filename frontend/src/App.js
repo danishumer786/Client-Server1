@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [message, setMessage] = useState('Click the button to call the backend!');
+  const [message, setMessage] = useState('Ready to test backend connection!');
   const [loading, setLoading] = useState(false);
 
   const handleButtonClick = async () => {
     setLoading(true);
-    setMessage('Calling backend...');
+    setMessage('🔄 Connecting to backend...');
 
     try {
       // Get backend URL from environment variable
@@ -25,12 +25,12 @@ function App() {
       const data = await response.json();
 
       if (data.success) {
-        setMessage(`✅ Success! ${data.message}`);
+        setMessage(`🎉 ${data.message}`);
       } else {
         setMessage(`❌ Error: ${data.message}`);
       }
     } catch (error) {
-      setMessage(`❌ Network Error: ${error.message}`);
+      setMessage(`❌ Network Error: Failed to fetch`);
       console.error('Error calling backend:', error);
     }
 
@@ -47,7 +47,7 @@ function App() {
             disabled={loading}
             className="action-button"
           >
-            {loading ? 'Processing...' : 'Open Server Image'}
+            {loading ? 'Testing Connection...' : 'Test Backend Connection'}
           </button>
           <div className="message">
             {message}
