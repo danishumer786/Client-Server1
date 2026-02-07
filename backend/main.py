@@ -9,14 +9,18 @@ load_dotenv()
 
 app = FastAPI()
 
-# Get frontend URL from environment variable
-frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
-print(f"🌐 Allowing CORS from: {frontend_url}")
+# Get frontend URLs - support both development and production
+localhost_url = "http://localhost:3000"
+production_url = "https://salmon-island-0c4d7891e.1.azurestatinapps.net"
+
+# Allow both development and production frontend URLs
+allowed_origins = [localhost_url, production_url]
+print(f"🌐 Allowing CORS from: {allowed_origins}")
 
 # Add CORS middleware to allow requests from React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend_url],  # Dynamic frontend URL
+    allow_origins=allowed_origins,  # Both localhost and production URLs
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
